@@ -7,4 +7,5 @@ OCI : Travaux pratiques
     :maxdepth: 1
 
     01/donnee
-    ..	02/donnee
+    02/donnee
+    .. 03/donnee
