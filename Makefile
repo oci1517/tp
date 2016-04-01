@@ -69,7 +69,7 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
-	$(SPHINXBUILD) -b html -t $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 encours:
@@ -210,16 +210,13 @@ firefox:
 chrome:
 	$(chrome) "http://$(HOSTNAME):$(SPHINX_PORT)/" &
 
-livehtml:
+livehtml: encours
 	@echo Serving pages on $(SPHINX_URL)
-	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html --port=$(SPHINX_PORT) --host=$(SPHINX_HOST) > /dev/null
-liveencours:
-	@echo Serving pages on $(SPHINX_URL)
-	sphinx-autobuild -b html -t encours $(ALLSPHINXOPTS) $(BUILDDIR)/encours --port=$(SPHINX_PORT) --host=$(SPHINX_HOST) > /dev/null
+	sphinx-autobuild -b html -t encours $(ALLSPHINXOPTS) $(BUILDDIR)/html --port=$(SPHINX_PORT) --host=$(SPHINX_HOST) > /dev/null
 
 ssh-key-publish:
 	cat ~/.ssh/id_rsa.pub | ssh webpub@donner-online.ch 'cat >> ~/.ssh/authorized_keys'
 
-puthtml:
+puthtml: clean html
 	rsync -raz build/html/* webpub@donner-online.ch:/home/webpub/html/oci/tp/ --progress --delete
 	# rsync -raz build/corrige/html/* webpub@donner-online.ch:/home/webpub/html/oci/evals/corrige/ --progress --delete
