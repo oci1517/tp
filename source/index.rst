@@ -6,6 +6,16 @@ OCI : Travaux pratiques
 ..  toctree::
     :maxdepth: 1
 
-    01/donnee
-    02/donnee
-    .. 03/donnee
+    01/index
+    02/index
+
+
+..  only:: encours
+
+    En cours de rédaction
+    =====================
+
+    ..  toctree::
+        :maxdepth: 1
+
+        03/index
