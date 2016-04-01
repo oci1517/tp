@@ -41,7 +41,7 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	
+
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -69,7 +69,11 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXBUILD) -b html -t $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+encours:
+	$(SPHINXBUILD) -b html -t encours $(ALLSPHINXOPTS) $(BUILDDIR)/encours
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
@@ -209,7 +213,12 @@ chrome:
 livehtml:
 	@echo Serving pages on $(SPHINX_URL)
 	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html --port=$(SPHINX_PORT) --host=$(SPHINX_HOST) > /dev/null
+liveencours:
+	@echo Serving pages on $(SPHINX_URL)
+	sphinx-autobuild -b html -t encours $(ALLSPHINXOPTS) $(BUILDDIR)/encours --port=$(SPHINX_PORT) --host=$(SPHINX_HOST) > /dev/null
 
+ssh-key-publish:
+	cat ~/.ssh/id_rsa.pub | ssh webpub@donner-online.ch 'cat >> ~/.ssh/authorized_keys'
 
 puthtml:
 	rsync -raz build/html/* webpub@donner-online.ch:/home/webpub/html/oci/tp/ --progress --delete
