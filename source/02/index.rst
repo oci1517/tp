@@ -80,7 +80,7 @@ taille du plus long mot trouvé dans la phrase
         def max_word_len(words):
             # do some job here
 
-            return word_count
+            return (index, size)
 
 Problème 2
 ==========
