@@ -8,9 +8,11 @@ OCI : Travaux pratiques
 
     01/index
     02/index
+    exa-3/index
+    poo-bases/index
 
 
-..  only:: encours
+..  only:: cacher-encours
 
     En cours de rédaction
     =====================
